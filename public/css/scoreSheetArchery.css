@@ -1,0 +1,59 @@
+body {
+    font-size: 14px;
+    text-align:center;
+    padding: 15px;
+}
+#saisie {
+    text-align: center;
+}
+#saisie.disabled {
+    display:none;
+}
+#saisie_volee {
+    padding: 20px 5px;
+}
+#saisie_volee .scoreFleche {
+    width: 30px;
+    padding: 3px;
+    text-align:center;
+    border-radius: 5px;
+    border: 1px solid #333333;
+    margin: 5px;
+}
+#total {
+    position: relative;
+    margin: 10px auto;
+    width: 150px;
+    text-align:center;
+    font-size: 2em;
+    background: #288E18;
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+}
+#volees {
+    position: relative;
+    width: 60%;
+    margin: 0 auto;
+    height: 90px;
+    overflow-y: scroll;
+    border: 1px solid #333333;
+    border-radius: 10px;
+}
+#volees .num_volee {
+    display: inline-block;
+    background: #1B809E;
+    text-align:center;
+    min-width: 25px;
+    padding: 2px;
+    border-radius: 8px;
+    color: white;
+    margin: 3px 10px;
+}
+#volees .fleche {
+    display: inline-block;
+    text-align:center;
+    min-width: 25px;
+    padding: 2px;
+    margin: 3px 10px;
+}
