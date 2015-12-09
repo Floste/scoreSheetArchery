@@ -6,14 +6,19 @@ body {
 #saisie {
     text-align: center;
 }
-#saisie.disabled {
-    display:none;
-}
 #saisie_volee {
     padding: 20px 5px;
+    font-size: 1.3em;
+}
+#saisie .saisie_pts{
+    margin: 0px 0px 10px 0px;
+    
+}
+#saisie .saisie_pts button{
+    font-size: 2em;
 }
 #saisie_volee .scoreFleche {
-    width: 30px;
+    width: 50px;
     padding: 3px;
     text-align:center;
     border-radius: 5px;
@@ -34,7 +39,7 @@ body {
 #volees {
     position: relative;
     width: 60%;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
     height: 90px;
     overflow-y: scroll;
     border: 1px solid #333333;
@@ -56,4 +61,10 @@ body {
     min-width: 25px;
     padding: 2px;
     margin: 3px 10px;
+}
+.disabled {
+    display: none;
+}
+.enabled {
+    display: block;
 }

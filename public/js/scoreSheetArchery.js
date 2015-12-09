@@ -1,3 +1,4 @@
+var NB_VOLEES_PAR_SERIE = 2;
 $().ready(function(){
     /*
     Load step
@@ -6,7 +7,9 @@ $().ready(function(){
         //WebStorage not supported.
         alert("WebStorage not supported");
     } else {
-        localStorage.setItem("series", {});
+        if (localStorage.getItem("series") === undefined || !isValidStorageSeries()) {
+            newSeries();
+        }
         if (localStorage.getItem("volees") === undefined || !isValidStorageVolees()) {
             newSerie();
         } else {
@@ -35,21 +38,21 @@ $().ready(function(){
         newSerie();
     });
     $("#okVoleeButton").click(function () {
-        var data = JSON.parse(localStorage.getItem("volees"));
-        data.volees.push(new Array(
-        0 + $("#saisie_volee input[name=fleche_1]").val(),
-        0 + $("#saisie_volee input[name=fleche_2]").val(),
-        0 + $("#saisie_volee input[name=fleche_3]").val()));
-        console.log(data);
-        localStorage.setItem("volees", JSON.stringify(data));
-        clearSaisie();
-        updateTotal();
-        updateVolees();
+        storeVolees();
+    });
+    $("#SaveSerieButton").click(function () {
+        storeSerie();
+        newSerie();
     });
     
 });
 /*
 	Fonctions outils
+*/
+/*
+########################################
+# Serie et Volees
+########################################
 */
 function newSerie() {
     localStorage.setItem("volees", '{"volees":[]}');
@@ -57,6 +60,13 @@ function newSerie() {
     clearSaisie();
     updateTotal();
     updateVolees();
+    var data = JSON.parse(localStorage.getItem("volees"));
+    data.idSerie = getIdDateSerie();
+    localStorage.setItem("volees", JSON.stringify(data));
+    $("#saisie").removeClass("disabled");
+    $("#saisie").addClass("enabled");
+    $("#saveSerie").removeClass("enabled");
+    $("#saveSerie").addClass("disabled");
 }
 
 function clearSaisie() {
@@ -88,18 +98,81 @@ function updateVolees() {
         $("#volees").append(str);
         $("#volees").scrollTop(9999);
     }
-    //Controle, si on est à 10 volées, on desactive la saisie
-    if (data.volees.length >= 10) {
+    //Controle, si on est à NB_VOLEES_PAR_SERIE volées, on desactive la saisie
+    //La série est finie, on propose de l'enregistrer
+    if (data.volees.length >= NB_VOLEES_PAR_SERIE) {
+        $("#saisie").removeClass("enabled");
         $("#saisie").addClass("disabled");
+        $("#saveSerie").removeClass("disabled");
+        $("#saveSerie").addClass("enabled");
     }
 }
 
 function isValidStorageVolees(){
-    var data = JSON.parse(localStorage.getItem("volees"));
+    try{
+        var data = JSON.parse(localStorage.getItem("volees"));
+    }catch(err){
+        return false;
+    }
     if(data){
 		if(data.volees){
         	return true;
         }
     }
 	return false;
+}
+
+function storeVolees(){
+    var data = JSON.parse(localStorage.getItem("volees"));
+    data.volees.push(new Array(
+    0 + $("#saisie_volee input[name=fleche_1]").val(),
+    0 + $("#saisie_volee input[name=fleche_2]").val(),
+    0 + $("#saisie_volee input[name=fleche_3]").val()));
+    localStorage.setItem("volees", JSON.stringify(data));
+    clearSaisie();
+    updateTotal();
+    updateVolees();
+}
+
+/*
+########################################
+# Series
+########################################
+*/
+function newSeries() {
+    localStorage.setItem("series", '{"series":[]}');
+}
+function isValidStorageSeries(){
+    try{
+        var data = JSON.parse(localStorage.getItem("series"));
+    }catch(err){
+        return false;
+    }
+    if(data){
+		if(data.series){
+        	return true;
+        }
+    }
+	return false;
+}
+function storeSerie(){
+    var volees = JSON.parse(localStorage.getItem("volees"));
+    var data = JSON.parse(localStorage.getItem("series"));
+    data.series.push(volees);
+    localStorage.setItem("series", JSON.stringify(data));
+}
+
+/*
+########################################
+# Outils
+########################################
+*/
+function getIdDateSerie(){
+    tmp_date = new Date();
+    return tmp_date.getFullYear() + pad(tmp_date.getUTCMonth()+1,2) + pad(tmp_date.getDate(),2) + pad(tmp_date.getHours(),2) + pad(tmp_date.getMinutes(),2) + pad(tmp_date.getSeconds(),2);
+}
+function pad(num, size) {
+    var s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
 }
