@@ -1,4 +1,4 @@
-var NB_VOLEES_PAR_SERIE = 2;
+var NB_VOLEES_PAR_SERIE = 10;
 $().ready(function(){
     /*
     Load step
