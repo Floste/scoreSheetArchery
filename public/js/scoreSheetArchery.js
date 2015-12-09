@@ -134,6 +134,11 @@ function storeVolees(){
     updateVolees();
 }
 
+function getIdDateSerie(){
+    tmp_date = new Date();
+    return tmp_date.getFullYear() + pad(tmp_date.getUTCMonth()+1,2) + pad(tmp_date.getDate(),2) + pad(tmp_date.getHours(),2) + pad(tmp_date.getMinutes(),2) + pad(tmp_date.getSeconds(),2);
+}
+
 /*
 ########################################
 # Series
@@ -162,17 +167,3 @@ function storeSerie(){
     localStorage.setItem("series", JSON.stringify(data));
 }
 
-/*
-########################################
-# Outils
-########################################
-*/
-function getIdDateSerie(){
-    tmp_date = new Date();
-    return tmp_date.getFullYear() + pad(tmp_date.getUTCMonth()+1,2) + pad(tmp_date.getDate(),2) + pad(tmp_date.getHours(),2) + pad(tmp_date.getMinutes(),2) + pad(tmp_date.getSeconds(),2);
-}
-function pad(num, size) {
-    var s = num+"";
-    while (s.length < size) s = "0" + s;
-    return s;
-}

@@ -1,26 +1,26 @@
-#saisie {
-    text-align: center;
+#series{
+    margin: 20px auto;
+    max-width: 300px;
 }
-#saisie_volee {
-    padding: 20px 5px;
-    font-size: 1.3em;
-}
-#saisie .saisie_pts{
-    margin: 0px 0px 10px 0px;
-    
-}
-#saisie .saisie_pts button{
-    font-size: 2em;
-}
-#saisie_volee .scoreFleche {
-    width: 50px;
+#series .serieResume{
+    margin: 5px 0px;
     padding: 3px;
-    text-align:center;
-    border-radius: 5px;
-    border: 1px solid #333333;
-    margin: 5px;
 }
-#total {
+#series .serieResume:nth-of-type(odd){
+    background: #ddd;
+}
+#series .serieResume .date{
+    display: inline-block;
+    width: 60%;
+    text-align: left;
+}
+#series .serieResume .total{
+    display: inline-block;
+    width: 30%;
+    text-align: right;
+}
+
+.serieDetails .total {
     position: relative;
     margin: 10px auto;
     width: 150px;
@@ -31,16 +31,14 @@
     color: white;
     border-radius: 10px;
 }
-#volees {
+.serieDetails .volees {
     position: relative;
     width: 60%;
     margin: 0 auto 20px auto;
-    height: 90px;
-    overflow-y: scroll;
     border: 1px solid #333333;
     border-radius: 10px;
 }
-#volees .num_volee {
+.serieDetails .volees .num_volee {
     display: inline-block;
     background: #1B809E;
     text-align:center;
@@ -50,16 +48,10 @@
     color: white;
     margin: 3px 10px;
 }
-#volees .fleche {
+.serieDetails .volees .fleche {
     display: inline-block;
     text-align:center;
     min-width: 25px;
     padding: 2px;
     margin: 3px 10px;
-}
-.disabled {
-    display: none;
-}
-.enabled {
-    display: block;
 }

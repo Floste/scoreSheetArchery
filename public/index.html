@@ -14,12 +14,27 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+    	<link rel="stylesheet" media="all" type="text/css" title="css" href="css/common.css" />	
     	<link rel="stylesheet" media="all" type="text/css" title="css" href="css/scoreSheetArchery.css" />	
+    	<script type="text/javascript" src="js/outils.js"></script>
     	<script type="text/javascript" src="js/scoreSheetArchery.js"></script>
 
 	</head>
     <body>
         <div class="container">
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="#">ArcheryScore</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Feuille de score</a></li>
+                    <li><a href="historique.html">Historique</a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
             <div id="actions_series" class="cols-sm-12">
                 <button type="button" id="NewSerieButton" class="btn btn-default">Nouvelle série</button>
             </div>
