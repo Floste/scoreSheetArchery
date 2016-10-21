@@ -57,6 +57,23 @@
     padding: 2px;
     margin: 3px 10px;
 }
+#volees .fleche.val10, #volees .fleche.val9{
+    background: #FBD400;
+}
+#volees .fleche.val8, #volees .fleche.val7{
+    background: #D91919;
+    color: white;
+}
+#volees .fleche.val6, #volees .fleche.val5{
+    background: #009ECE;
+}
+#volees .fleche.val4, #volees .fleche.val3{
+    background: #000000;
+    color: white;
+}
+#volees .fleche.val2, #volees .fleche.val1{
+    background: #FFFFFF;
+}
 .disabled {
     display: none;
 }

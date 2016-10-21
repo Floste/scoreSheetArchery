@@ -89,11 +89,15 @@ function updateTotal() {
 function updateVolees() {
     $("#volees").html("");
     var data = JSON.parse(localStorage.getItem("volees"));
+    var valFleche;
     for (i = 0; i < data.volees.length; i++) {
         str = "<div class='volee'>" +
             "<span class='num_volee'>" + (i + 1) + "</span>";
         for (j = 0; j < 3; j++) {
-            str += "<span class='fleche'>" + parseInt(data.volees[i][j]) + "</span>";
+            valFleche = "";
+            valFleche += parseInt(data.volees[i][j]);
+            
+            str += "<span class='fleche val"+valFleche+"'>" + valFleche + "</span>";
         }
         $("#volees").append(str);
         $("#volees").scrollTop(9999);

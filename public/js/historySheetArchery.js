@@ -29,7 +29,10 @@ function getDetailSerie(curSerie){
         str += "<div class='volee'>" +
             "<span class='num_volee'>" + (i + 1) + "</span>";
         for (j = 0; j < 3; j++) {
-            str += "<span class='fleche'>" + parseInt(curSerie.volees[i][j]) + "</span>";
+            valFleche = "";
+            valFleche += parseInt(curSerie.volees[i][j]);
+            
+            str += "<span class='fleche val"+valFleche+"'>" + valFleche + "</span>";
         }
     }
     str += "</div>";
@@ -68,10 +71,11 @@ function displaySeries(){
     for(i=0; i<data.series.length; i++){
         curSerie = data.series[i];
         curDate = serieGetDate(curSerie);
-        str_disp = "<div class='serieResume' rel='" + curSerie.idSerie + "' data-toggle='modal' data-target='#details_" + curSerie.idSerie + "'>";
+        str_disp = "<div class='serieResume'>"
+        str_disp += "<button rel='" + curSerie.idSerie + "' data-toggle='modal' data-target='#details_" + curSerie.idSerie + "'>+</button>";
         str_disp += "<span class='date'>"
                     + curDate.getFullYear() + "-"
-                    + pad(curDate.getMonth(),2) + "-"
+                    + pad(curDate.getMonth()+1,2) + "-"
                     + pad(curDate.getDate(),2) + " "
                     + pad(curDate.getHours(),2) + ":"
                     + pad(curDate.getMinutes(),2)
@@ -79,7 +83,7 @@ function displaySeries(){
         str_disp += "<span class='total'>" + serieGetTotal(curSerie) + "</span>";
         str_disp += "</div>";
         $("#series").append(str_disp);
-        str_details = "<div class='modal fade' id='details_" + curSerie.idSerie + "' tabindex='-1' role='dialog'>";
+        str_details = "<div class='modal ' id='details_" + curSerie.idSerie + "' tabindex='-1' role='dialog'>";
         str_details += "<div class='modal-dialog' role='document'>";
         str_details += "<div class='modal-content'>";
         str_details += "<div class='modal-header'>";

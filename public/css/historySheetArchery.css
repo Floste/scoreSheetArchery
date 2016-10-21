@@ -11,7 +11,7 @@
 }
 #series .serieResume .date{
     display: inline-block;
-    width: 60%;
+    width: 50%;
     text-align: left;
 }
 #series .serieResume .total{
@@ -54,4 +54,22 @@
     min-width: 25px;
     padding: 2px;
     margin: 3px 10px;
+}
+.serieDetails .volees .fleche.val10, .serieDetails .volees .fleche.val9{
+    background: #FBD400;
+}
+.serieDetails .volees .fleche.val8, .serieDetails .volees .fleche.val7{
+    background: #D91919;
+    color: white;
+}
+.serieDetails .volees .fleche.val6, .serieDetails .volees .fleche.val5{
+    background: #009ECE;
+    color: white;
+}
+.serieDetails .volees .fleche.val4, .serieDetails .volees .fleche.val3{
+    background: #000000;
+    color: white;
+}
+.serieDetails .volees .fleche.val2, .serieDetails .volees .fleche.val1{
+    background: #FFFFFF;
 }
