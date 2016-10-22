@@ -71,7 +71,8 @@ function displaySeries(){
     for(i=0; i<data.series.length; i++){
         curSerie = data.series[i];
         curDate = serieGetDate(curSerie);
-        str_disp = "<div class='serieResume'>"
+        str_disp = "<div class='serieResume'>";
+        str_disp += "<div class='serieStats' style='background:" + getStatColors(curSerie.volees) + ";'></div>";
         str_disp += "<button rel='" + curSerie.idSerie + "' data-toggle='modal' data-target='#details_" + curSerie.idSerie + "'>+</button>";
         str_disp += "<span class='date'>"
                     + curDate.getFullYear() + "-"
