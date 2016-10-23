@@ -1,5 +1,5 @@
-var NB_VOLEES_PAR_SERIE = 3;
-var NB_FLECHES_PAR_VOLEES = 6;
+var NB_VOLEES_PAR_SERIE = 10;
+var NB_FLECHES_PAR_VOLEES = 3;
 
 $().ready(function(){
     /*

@@ -42,7 +42,23 @@
               </div>
             </nav>
             <div id="actions_series" class="cols-sm-12">
-                <button type="button" id="NewSerieButton" class="btn btn-default">Nouvelle série</button>
+                <button data-toggle='modal' data-target='#paramNewSerie' class="btn btn-default">Nouvelle série</button>
+                <div class='modal ' id='paramNewSerie' tabindex='-1' role='dialog'>
+                    <div class='modal-dialog' role='document'>
+                        <div class='modal-content'>
+                            <div class='modal-header'>
+                                <button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span></button>
+                                <h4 class='modal-title' id='myModalLabel'>Nouvelles série</h4>
+                            </div>
+                            <div class='modal-body'>
+                                <button type="button" id="NewSerieButton" class="btn btn-success" data-dismiss='modal'>Créer la série</button>
+                            </div>
+                            <div class='modal-footer'>
+                                <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="total" class="cols-sm-12"></div>
             <div id="statColors" class="cols-sm-12"></div>
