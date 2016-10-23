@@ -25,6 +25,7 @@ function getDetailSerie(curSerie){
     str = "<div class='serieDetails'>";
     str += "<div class='total'>" + serieGetTotal(curSerie) + "</div>";
     str += "<div class='volees'>";
+    str += "<div class='serieStats' style='background:" + getStatColors(curSerie.volees) + ";'></div>";
     for (i = 0; i < curSerie.volees.length; i++) {
         str += "<div class='volee'>" +
             "<span class='num_volee'>" + (i + 1) + "</span>";
@@ -34,6 +35,7 @@ function getDetailSerie(curSerie){
             
             str += "<span class='fleche val"+valFleche+"'>" + valFleche + "</span>";
         }
+        str += "</div>";
     }
     str += "</div>";
     str += "</div>";
