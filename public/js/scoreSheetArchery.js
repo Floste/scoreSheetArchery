@@ -1,4 +1,6 @@
-var NB_VOLEES_PAR_SERIE = 10;
+var NB_VOLEES_PAR_SERIE = 3;
+var NB_FLECHES_PAR_VOLEES = 6;
+
 $().ready(function(){
     /*
     Load step
@@ -23,7 +25,7 @@ $().ready(function(){
     	Actions boutons
     */
     $("#saisie .pts").click(function () {
-        for (i = 1; i <= 3; i++) {
+        for (i = 1; i <= NB_FLECHES_PAR_VOLEES; i++) {
             cur_elt = $("#saisie_volee input[name=fleche_" + i + "]");
             if ($(cur_elt).val()=="") {
                 $(cur_elt).val($(this).html());
@@ -67,10 +69,19 @@ function newSerie() {
     $("#saisie").addClass("enabled");
     $("#saveSerie").removeClass("enabled");
     $("#saveSerie").addClass("disabled");
+    createZoneScores(NB_FLECHES_PAR_VOLEES);
+}
+
+function createZoneScores(nbFleches){
+    strZoneScores = "";
+    for (j = 1; j <= nbFleches; j++) {
+        strZoneScores += "<input type='text' name='fleche_"+j+"' value'' class='scoreFleche' />";
+    }
+    $("#zoneScores").html(strZoneScores);
 }
 
 function clearSaisie() {
-    for (i = 1; i <= 3; i++) {
+    for (i = 1; i <= NB_FLECHES_PAR_VOLEES; i++) {
         $("#saisie_volee input[name=fleche_" + i + "]").val("");
     }
 }
@@ -93,7 +104,7 @@ function updateVolees() {
     for (i = 0; i < data.volees.length; i++) {
         str = "<div class='volee'>" +
             "<span class='num_volee'>" + (i + 1) + "</span>";
-        for (j = 0; j < 3; j++) {
+        for (j = 0; j < NB_FLECHES_PAR_VOLEES; j++) {
             valFleche = "";
             valFleche += parseInt(data.volees[i][j]);
             str += "<span class='fleche val"+valFleche+"'>" + valFleche + "</span>";
@@ -134,10 +145,12 @@ function isValidStorageVolees(){
 
 function storeVolees(){
     var data = JSON.parse(localStorage.getItem("volees"));
-    data.volees.push(new Array(
-    0 + $("#saisie_volee input[name=fleche_1]").val(),
-    0 + $("#saisie_volee input[name=fleche_2]").val(),
-    0 + $("#saisie_volee input[name=fleche_3]").val()));
+    dataVolees = new Array()
+    for (j = 1; j <= NB_FLECHES_PAR_VOLEES; j++) {
+        valFleche = $("#saisie_volee input[name=fleche_"+ j +"]").val();
+        dataVolees.push(valFleche);
+    }
+    data.volees.push(dataVolees);
     localStorage.setItem("volees", JSON.stringify(data));
     clearSaisie();
     updateTotal();

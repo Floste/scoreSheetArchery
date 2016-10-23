@@ -49,11 +49,13 @@
             <div id="volees" class="cols-sm-12"></div>
             <div id="saisie">
                 <form id="saisie_volee">
-                    <input type="text" name="fleche_1" value="" class="scoreFleche" />
-                    <input type="text" name="fleche_2" value="" class="scoreFleche" />
-                    <input type="text" name="fleche_3" value="" class="scoreFleche" />
-                    <button type="button" id="clearButton" class="btn btn-default">Clear</button>
-                    <button type="button" id="okVoleeButton" class="btn btn-default">OK</button>
+                    <div id="zoneScores">
+                        <input type="text" name="fleche_1" value="" class="scoreFleche" />
+                        <input type="text" name="fleche_2" value="" class="scoreFleche" />
+                        <input type="text" name="fleche_3" value="" class="scoreFleche" />
+                    </div>
+                    <button type="button" id="clearButton" class="btn btn-warning">Clear</button>
+                    <button type="button" id="okVoleeButton" class="btn btn-success">OK</button>
                 </form>
                 <div class="btn-group btn-group-lg saisie_pts">
                     <button type="button" class="pts btn btn-default">10</button>
@@ -72,9 +74,6 @@
             </div>
             <div id="saveSerie">
                 <button type="button" id="SaveSerieButton" class="btn btn-default">Conserver la série</button>
-            </div>
-            <div id="actions_series" class="cols-sm-12">
-                <button type="button" id="NewSerieButton" class="btn btn-default">Nouvelle série</button>
             </div>
         </div>
     </body>

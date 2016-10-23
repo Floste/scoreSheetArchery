@@ -12,8 +12,11 @@
 #saisie .saisie_pts button{
     font-size: 2em;
 }
+#saisie_volee .zoneScores {
+    display: block;
+}
 #saisie_volee .scoreFleche {
-    width: 50px;
+    width: 35px;
     padding: 3px;
     text-align:center;
     border-radius: 5px;
