@@ -5,6 +5,7 @@
 #series .serieResume{
     margin: 5px 0px;
     padding: 3px;
+    display: none;
 }
 #series .serieResume .serieStats{
     width: 100%;
@@ -46,7 +47,7 @@
 }
 .serieDetails .volees {
     position: relative;
-    width: 60%;
+    width: 90%;
     margin: 0 auto 20px auto;
     border: 1px solid #333333;
     border-radius: 10px;
@@ -66,7 +67,7 @@
     text-align:center;
     min-width: 25px;
     padding: 2px;
-    margin: 3px 10px;
+    margin: 3px 8px;
 }
 .serieDetails .volees .fleche.val10, .serieDetails .volees .fleche.val9{
     background: #FBD400;

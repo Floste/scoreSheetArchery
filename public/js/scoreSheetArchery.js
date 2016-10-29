@@ -24,8 +24,9 @@ $().ready(function(){
     /*
     	Actions boutons
     */
+    createZoneScores(getNbFlechesParVoleesCurrentSerie());
     $("#saisie .pts").click(function () {
-        for (i = 1; i <= NB_FLECHES_PAR_VOLEES; i++) {
+        for (i = 1; i <= getNbFlechesParVoleesCurrentSerie(); i++) {
             cur_elt = $("#saisie_volee input[name=fleche_" + i + "]");
             if ($(cur_elt).val()=="") {
                 $(cur_elt).val($(this).html());
@@ -46,6 +47,21 @@ $().ready(function(){
         storeSerie();
         newSerie();
     });
+
+    var data = JSON.parse(localStorage.getItem("volees"));
+    if(data.volees){
+        if (data.volees.length >= getNbVoleesCurrentSerie()) {
+            $("#saisie").removeClass("enabled");
+            $("#saisie").addClass("disabled");
+            $("#saveSerie").removeClass("disabled");
+            $("#saveSerie").addClass("enabled");
+        }else{
+            $("#saisie").addClass("enabled");
+            $("#saisie").removeClass("disabled");
+            $("#saveSerie").addClass("disabled");
+            $("#saveSerie").removeClass("enabled");
+        }
+    }
     
 });
 /*
@@ -57,6 +73,9 @@ $().ready(function(){
 ########################################
 */
 function newSerie() {
+    nbVolees = $("#chpNbVolees").val();
+    nbFlechesParVolees = $("#chpNbFlechesParVolees").val();
+
     localStorage.setItem("volees", '{"volees":[]}');
     $("#saisie").removeClass("disabled");
     clearSaisie();
@@ -64,12 +83,14 @@ function newSerie() {
     updateVolees();
     var data = JSON.parse(localStorage.getItem("volees"));
     data.idSerie = getIdDateSerie();
+    data.nbVolees = nbVolees;
+    data.nbFlechesParVolees = nbFlechesParVolees;
     localStorage.setItem("volees", JSON.stringify(data));
     $("#saisie").removeClass("disabled");
     $("#saisie").addClass("enabled");
     $("#saveSerie").removeClass("enabled");
     $("#saveSerie").addClass("disabled");
-    createZoneScores(NB_FLECHES_PAR_VOLEES);
+    createZoneScores(getNbFlechesParVoleesCurrentSerie());
 }
 
 function createZoneScores(nbFleches){
@@ -81,7 +102,7 @@ function createZoneScores(nbFleches){
 }
 
 function clearSaisie() {
-    for (i = 1; i <= NB_FLECHES_PAR_VOLEES; i++) {
+    for (i = 1; i <= getNbFlechesParVoleesCurrentSerie(); i++) {
         $("#saisie_volee input[name=fleche_" + i + "]").val("");
     }
 }
@@ -90,9 +111,9 @@ function updateTotal() {
     var data = JSON.parse(localStorage.getItem("volees"));
     total = 0;
     for (i = 0; i < data.volees.length; i++) {
-        total += parseInt(data.volees[i][0]);
-        total += parseInt(data.volees[i][1]);
-        total += parseInt(data.volees[i][2]);
+        for (j=0; j < getNbFlechesParVoleesCurrentSerie(); j++){
+            total += parseInt(data.volees[i][j]);
+        }
     }
     $("#total").html(total);
 }
@@ -104,7 +125,7 @@ function updateVolees() {
     for (i = 0; i < data.volees.length; i++) {
         str = "<div class='volee'>" +
             "<span class='num_volee'>" + (i + 1) + "</span>";
-        for (j = 0; j < NB_FLECHES_PAR_VOLEES; j++) {
+        for (j = 0; j < getNbFlechesParVoleesCurrentSerie(); j++) {
             valFleche = "";
             valFleche += parseInt(data.volees[i][j]);
             str += "<span class='fleche val"+valFleche+"'>" + valFleche + "</span>";
@@ -113,9 +134,9 @@ function updateVolees() {
         $("#volees").scrollTop(9999);
     }
     updateStatColors(data.volees);
-    //Controle, si on est à NB_VOLEES_PAR_SERIE volées, on desactive la saisie
+    //Controle, si on est à getNbVoleesCurrentSerie volées, on desactive la saisie
     //La série est finie, on propose de l'enregistrer
-    if (data.volees.length >= NB_VOLEES_PAR_SERIE) {
+    if (data.volees.length >= getNbVoleesCurrentSerie()) {
         $("#saisie").removeClass("enabled");
         $("#saisie").addClass("disabled");
         $("#saveSerie").removeClass("disabled");
@@ -146,7 +167,7 @@ function isValidStorageVolees(){
 function storeVolees(){
     var data = JSON.parse(localStorage.getItem("volees"));
     dataVolees = new Array()
-    for (j = 1; j <= NB_FLECHES_PAR_VOLEES; j++) {
+    for (j = 1; j <= getNbFlechesParVoleesCurrentSerie(); j++) {
         valFleche = $("#saisie_volee input[name=fleche_"+ j +"]").val();
         dataVolees.push(valFleche);
     }
@@ -155,6 +176,16 @@ function storeVolees(){
     clearSaisie();
     updateTotal();
     updateVolees();
+}
+
+function getNbFlechesParVoleesCurrentSerie(){
+    var data = JSON.parse(localStorage.getItem("volees"));
+    return data.nbFlechesParVolees;
+}
+
+function getNbVoleesCurrentSerie(){
+    var data = JSON.parse(localStorage.getItem("volees"));
+    return data.nbVolees;
 }
 
 function getIdDateSerie(){

@@ -36,7 +36,7 @@
 }
 #volees {
     position: relative;
-    width: 60%;
+    width: 95%;
     margin: 0 auto 20px auto;
     height: 90px;
     overflow-y: scroll;
@@ -58,7 +58,7 @@
     text-align:center;
     min-width: 25px;
     padding: 2px;
-    margin: 3px 10px;
+    margin: 3px 8px;
 }
 #volees .fleche.val10, #volees .fleche.val9{
     background: #FBD400;
@@ -85,6 +85,13 @@
     margin: 5px auto;
     border: 1px solid #666666;
     border-radius: 2px;
+}
+#formCreateNewSerie .form-group label{
+    width: 50%;    
+}
+#formCreateNewSerie .form-group select{
+    display: inline-block;
+    width: 30%;    
 }
 .disabled {
     display: none;
