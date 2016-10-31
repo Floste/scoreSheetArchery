@@ -3,6 +3,7 @@
 # Outils
 ########################################
 */
+
 var colorJaune = "#FBD400";
 var colorRouge = "#D91919";
 var colorBleu = "#009ECE";
@@ -80,4 +81,21 @@ function getTabFlechesColors(tabVolees) {
         }
     }
     return TabNbColor;
+}
+
+function sort(origTab){
+    ret = origTab;
+    isSorted = false;
+    while(!isSorted){
+        isSorted = true;
+        for(cptSort=0; cptSort<ret.length-1; cptSort++){
+            if(parseInt(ret[cptSort]) < parseInt(ret[cptSort+1])){
+                tmp = ret[cptSort];
+                ret[cptSort] = ret[cptSort+1];
+                ret[cptSort+1] = tmp;
+                isSorted = false;
+            }
+        }
+    }
+    return ret;
 }

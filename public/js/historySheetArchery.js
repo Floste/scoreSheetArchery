@@ -40,9 +40,10 @@ function getDetailSerie(curSerie){
     for (i = 0; i < curSerie.volees.length; i++) {
         str += "<div class='volee'>" +
             "<span class='num_volee'>" + (i + 1) + "</span>";
+        tabPoints = sort(curSerie.volees[i]);
         for (j = 0; j < nbFlechesParVolees; j++) {
             valFleche = "";
-            valFleche += parseInt(curSerie.volees[i][j]);
+            valFleche += parseInt(tabPoints[j]);
             
             str += "<span class='fleche val"+valFleche+"'>" + valFleche + "</span>";
         }

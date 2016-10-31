@@ -125,9 +125,10 @@ function updateVolees() {
     for (i = 0; i < data.volees.length; i++) {
         str = "<div class='volee'>" +
             "<span class='num_volee'>" + (i + 1) + "</span>";
+        tabPoints = sort(data.volees[i]);
         for (j = 0; j < getNbFlechesParVoleesCurrentSerie(); j++) {
             valFleche = "";
-            valFleche += parseInt(data.volees[i][j]);
+            valFleche += parseInt(tabPoints[j]);
             str += "<span class='fleche val"+valFleche+"'>" + valFleche + "</span>";
         }
         $("#volees").append(str);
@@ -171,6 +172,7 @@ function storeVolees(){
         valFleche = $("#saisie_volee input[name=fleche_"+ j +"]").val();
         dataVolees.push(valFleche);
     }
+    dataVolees = sort(dataVolees);
     data.volees.push(dataVolees);
     localStorage.setItem("volees", JSON.stringify(data));
     clearSaisie();
