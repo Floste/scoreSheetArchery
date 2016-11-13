@@ -1,11 +1,19 @@
-var NB_VOLEES_PAR_SERIE = 10;
-var NB_FLECHES_PAR_VOLEES = 3;
 
 function initFormSaisie(){
     $("#containerNav").empty();
     $("#containerMain").empty();
     $("#containerNav").append(($("#templateNav").children().clone()));
     $("#containerMain").append(($("#templateFormSaisie").children().clone()));
+    /*Init Form */
+    for (var cptBlason in listeBlasons) {
+        optionBlason = "";
+        objBlason = listeBlasons[cptBlason];
+        optionBlason = "<option value='" + objBlason.id + "' >";
+        optionBlason += objBlason.name;
+        optionBlason += "</option>";
+        $("#containerMain #chpBlason").append(optionBlason);
+    }
+
     /*
     Load step
     */
@@ -79,6 +87,8 @@ function initFormSaisie(){
 function newSerie() {
     nbVolees = $("#chpNbVolees").val();
     nbFlechesParVolees = $("#chpNbFlechesParVolees").val();
+    distance = $("#chpDistance").val();
+    blason = $("#chpBlason").val();
 
     localStorage.setItem("volees", '{"volees":[]}');
     $("#saisie").removeClass("disabled");
@@ -89,6 +99,8 @@ function newSerie() {
     data.idSerie = getIdDateSerie();
     data.nbVolees = nbVolees;
     data.nbFlechesParVolees = nbFlechesParVolees;
+    data.distance = distance;
+    data.blason = blason;
     localStorage.setItem("volees", JSON.stringify(data));
     $("#saisie").removeClass("disabled");
     $("#saisie").addClass("enabled");

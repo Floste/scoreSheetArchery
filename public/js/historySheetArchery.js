@@ -1,6 +1,3 @@
-var DEFAULT_NB_VOLEES_PAR_SERIE = 10;
-var DEFAULT_NB_FLECHES_PAR_VOLEES = 3;
-
 function initHistorique(){
     $("#containerNav").empty();
     $("#containerMain").empty();
@@ -24,9 +21,11 @@ function initHistorique(){
     	Actions boutons
     */
     $("#selecteurSeries").change(function(){
-        selNbVolees = $("#selecteurSeries option:selected").attr("data-selnbvolees");
-        selNbFlechesParVolees = $("#selecteurSeries option:selected").attr("data-selnbflechesparvolees");
-        displayConfiguration(selNbVolees,selNbFlechesParVolees);
+        selNbVolees = $("#selecteurSeries option:selected").attr("data-selNbVolees");
+        selNbFlechesParVolees = $("#selecteurSeries option:selected").attr("data-selNbFlechesParVolees");
+        selDistance = $("#selecteurSeries option:selected").attr("data-selDistance");
+        selBlason = $("#selecteurSeries option:selected").attr("data-selBlason");
+        displayConfiguration(selNbVolees,selNbFlechesParVolees,selDistance,selBlason);
     })
 }
 /*
@@ -93,6 +92,27 @@ function getNbFlechesParVolees(curSerie){
     }
     return nbFlechesParVolees;
 }
+function getDistance(curSerie){
+    distance = DEFAULT_DISTANCE;
+    if(curSerie.distance){
+        distance = curSerie.distance;
+    }
+    return distance;    
+}
+function getBlasonId(curSerie){
+    blason = DEFAULT_BLASON;
+    if(curSerie.blason){
+        blason = curSerie.blason;
+    }
+    return blason;
+}
+function getBlasonName(curSerie){
+    blason = DEFAULT_BLASON;
+    if(curSerie.blason){
+        blason = curSerie.blason;
+    }
+    return (getObjBlasonFromId(blason)).name;
+}
 
 /*
 ########################################
@@ -109,10 +129,14 @@ function displaySeries(){
         curDate = serieGetDate(curSerie);
         curNbVolees = getNbVolees(curSerie);
         curNbFlechesParVolees = getNbFlechesParVolees(curSerie);
+        curDistance = getDistance(curSerie);
+        curBlason = getBlasonId(curSerie);
 
         str_disp = "<div class='serieResume' ";
         str_disp += " data-nbVolees = '" + curNbVolees + "' ";
         str_disp += " data-nbFlechesParVolees = '" + curNbFlechesParVolees + "' ";
+        str_disp += " data-distance = '" + curDistance + "' ";
+        str_disp += " data-blason = '" + curBlason + "' ";
         str_disp += " >";
         str_disp += "<div class='serieStats' style='background:" + getStatColors(curSerie.volees) + ";'></div>";
         str_disp += "<button rel='" + curSerie.idSerie + "' data-toggle='modal' data-target='#details_" + curSerie.idSerie + "'>+</button>";
@@ -152,13 +176,18 @@ function displaySelecteurSeries(){
         curDate = serieGetDate(curSerie);
         curNbVolees = getNbVolees(curSerie);
         curNbFlechesParVolees = getNbFlechesParVolees(curSerie);
+        curDistance = getDistance(curSerie);
+        curBlason = getBlasonId(curSerie);
         strKeyConfig = "conf-" + curNbVolees + "-" + curNbFlechesParVolees;
+        strKeyConfig += "-" + curDistance + "-" + curBlason;
 
         if(!listeConfigurations[strKeyConfig]){
             listeConfigurations[strKeyConfig] = {
-                "disp": curNbVolees + " volées de " + curNbFlechesParVolees + " fleches",
+                "disp": curNbVolees + " vol. " + curNbFlechesParVolees + " fl., blas. " + getObjBlasonFromId(curBlason).name + " à " + curDistance + "m",
                 "nbVolees" : curNbVolees,
-                "nbFlechesParVolees":curNbFlechesParVolees
+                "nbFlechesParVolees":curNbFlechesParVolees,
+                "distance" : curDistance,
+                "blason" : curBlason
             };
         }
     }
@@ -167,15 +196,19 @@ function displaySelecteurSeries(){
         strOption = "<option "
         strOption += " data-selNbVolees='" + curOption.nbVolees + "' ";
         strOption += " data-selNbFlechesParVolees='" + curOption.nbFlechesParVolees + "' ";
+        strOption += " data-selDistance='" + curOption.distance + "' ";
+        strOption += " data-selBlason='" + curOption.blason + "' ";
         strOption += ">" + curOption.disp + "</options>";
         $("#selecteurSeries").append(strOption);
     }
 }
-function displayConfiguration(nbVolees,nbFlechesParVolees){
+function displayConfiguration(nbVolees,nbFlechesParVolees,distance,blason){
     $(".serieResume").css("display","none");
     selecteurCss = ".serieResume";
     selecteurCss += "[data-nbVolees="+nbVolees+"]";
     selecteurCss += "[data-nbFlechesParVolees="+nbFlechesParVolees+"]";
+    selecteurCss += "[data-distance="+distance+"]";
+    selecteurCss += "[data-blason="+blason+"]";
     $(selecteurCss).css("display","block");
 }
 function isValidStorageSeries(){

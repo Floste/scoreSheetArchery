@@ -11,6 +11,7 @@
                     <div class="form-group">
                         <label for="chpNbVolees">Nombre de volées</label>
                         <select class="form-control" name="nbVolees" id="chpNbVolees">
+                            <option value="5">5</option>
                             <option value="6">6</option>
                             <option value="10" selected>10</option>
                             <option value="12">12</option>
@@ -22,6 +23,26 @@
                         <select class="form-control" name="nbFlechesParVolees" id="chpNbFlechesParVolees">
                             <option value="3" selected>3</option>
                             <option value="6">6</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chpDistance">Distance</label>
+                        <select class="form-control" name="distance" id="chpDistance">
+                            <option value="10">10 m</option>
+                            <option value="15">15 m</option>
+                            <option value="18" selected>18 m</option>
+                            <option value="20">20 m</option>
+                            <option value="25">25 m</option>
+                            <option value="30">30 m</option>
+                            <option value="40">40 m</option>
+                            <option value="50">40 m</option>
+                            <option value="60">60 m</option>
+                            <option value="70">70 m</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="chpBlason">Blason</label>
+                        <select class="form-control" name="blason" id="chpBlason">
                         </select>
                     </div>
                     <button type="button" id="NewSerieButton" class="btn btn-success" data-dismiss='modal'>Créer la série</button>

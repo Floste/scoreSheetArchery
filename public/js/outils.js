@@ -10,6 +10,29 @@ var colorBleu = "#009ECE";
 var colorNoir = "#000000";
 var colorBlanc = "#ffffff";
 
+var DEFAULT_NB_VOLEES_PAR_SERIE = 10;
+var DEFAULT_NB_FLECHES_PAR_VOLEES = 3;
+var DEFAULT_DISTANCE= 18;
+var DEFAULT_BLASON = "40";
+
+var listeBlasons = [
+        {"id":"40","name":"40 cm"},
+        {"id":"40t","name":"Trispot 40 cm"},
+        {"id":"60","name":"60 cm"},
+        {"id":"80","name":"80 cm"},
+        {"id":"122","name":"122 cm"}
+    ]
+function getObjBlasonFromId(idBlason){
+    ret = {};
+    for (var cptBlason in listeBlasons) {
+        objBlason = listeBlasons[cptBlason];
+        if(objBlason.id == idBlason){
+            return objBlason;
+        }
+    }
+    return ret;
+}
+
 function pad(num, size) {
     var s = num+"";
     while (s.length < size) s = "0" + s;
