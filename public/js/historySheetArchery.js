@@ -1,7 +1,12 @@
 var DEFAULT_NB_VOLEES_PAR_SERIE = 10;
 var DEFAULT_NB_FLECHES_PAR_VOLEES = 3;
 
-$().ready(function(){
+function initHistorique(){
+    $("#containerNav").empty();
+    $("#containerMain").empty();
+    $("#containerNav").append(($("#templateNav").children().clone()));
+    $("#containerMain").append(($("#templateHistorique").children().clone()));
+
     /*
     Load step
     */
@@ -23,7 +28,7 @@ $().ready(function(){
         selNbFlechesParVolees = $("#selecteurSeries option:selected").attr("data-selnbflechesparvolees");
         displayConfiguration(selNbVolees,selNbFlechesParVolees);
     })
-});
+}
 /*
 ########################################
 # Serie et Volees

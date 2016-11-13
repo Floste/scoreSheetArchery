@@ -1,7 +1,11 @@
 var NB_VOLEES_PAR_SERIE = 10;
 var NB_FLECHES_PAR_VOLEES = 3;
 
-$().ready(function(){
+function initFormSaisie(){
+    $("#containerNav").empty();
+    $("#containerMain").empty();
+    $("#containerNav").append(($("#templateNav").children().clone()));
+    $("#containerMain").append(($("#templateFormSaisie").children().clone()));
     /*
     Load step
     */
@@ -63,7 +67,7 @@ $().ready(function(){
         }
     }
     
-});
+}
 /*
 	Fonctions outils
 */
