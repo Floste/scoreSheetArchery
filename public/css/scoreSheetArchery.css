@@ -77,6 +77,15 @@
 #volees .fleche.val2, #volees .fleche.val1{
     background: #FFFFFF;
 }
+#volees .fleche.val0{
+    background: repeating-linear-gradient(
+      45deg,
+      #ffffff,
+      #cccccc 1px,
+      #ffffff 2px,
+      #ffffff 4px
+    );
+}
 #statColors{
     position: relative;
     height: 5px;

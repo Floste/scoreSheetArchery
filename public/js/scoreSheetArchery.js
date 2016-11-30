@@ -181,19 +181,34 @@ function isValidStorageVolees(){
 	return false;
 }
 
-function storeVolees(){
-    var data = JSON.parse(localStorage.getItem("volees"));
-    dataVolees = new Array()
-    for (j = 1; j <= getNbFlechesParVoleesCurrentSerie(); j++) {
-        valFleche = $("#saisie_volee input[name=fleche_"+ j +"]").val();
-        dataVolees.push(valFleche);
+function isOkForStoreVolees(){
+    for (i = 1; i <= getNbFlechesParVoleesCurrentSerie(); i++) {
+        currentCheckVal = $("#saisie_volee input[name=fleche_" + i + "]").val();
+        if(isNaN(currentCheckVal) || currentCheckVal==""){
+            return false;
+        }
     }
-    dataVolees = sort(dataVolees);
-    data.volees.push(dataVolees);
-    localStorage.setItem("volees", JSON.stringify(data));
-    clearSaisie();
-    updateTotal();
-    updateVolees();
+    return true;
+}
+
+function storeVolees(){
+    if(isOkForStoreVolees()){
+        var data = JSON.parse(localStorage.getItem("volees"));
+        dataVolees = new Array()
+        for (j = 1; j <= getNbFlechesParVoleesCurrentSerie(); j++) {
+            valFleche = $("#saisie_volee input[name=fleche_"+ j +"]").val();
+            if(isNaN(valFleche) || valFleche==""){
+                valFleche = 0;
+            }
+            dataVolees.push(valFleche);
+        }
+        dataVolees = sort(dataVolees);
+        data.volees.push(dataVolees);
+        localStorage.setItem("volees", JSON.stringify(data));
+        clearSaisie();
+        updateTotal();
+        updateVolees();
+    }
 }
 
 function getNbFlechesParVoleesCurrentSerie(){

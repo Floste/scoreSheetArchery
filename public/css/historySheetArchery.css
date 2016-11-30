@@ -87,3 +87,12 @@
 .serieDetails .volees .fleche.val2, .serieDetails .volees .fleche.val1{
     background: #FFFFFF;
 }
+.serieDetails .volees .fleche.val0{
+    background: repeating-linear-gradient(
+      45deg,
+      #ffffff,
+      #cccccc 1px,
+      #ffffff 2px,
+      #ffffff 4px
+    );
+}

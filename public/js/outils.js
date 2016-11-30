@@ -9,6 +9,7 @@ var colorRouge = "#D91919";
 var colorBleu = "#009ECE";
 var colorNoir = "#000000";
 var colorBlanc = "#ffffff";
+var colorManque = "#cccccc";
 
 var DEFAULT_NB_VOLEES_PAR_SERIE = 10;
 var DEFAULT_NB_FLECHES_PAR_VOLEES = 3;
@@ -49,6 +50,7 @@ function getStatColors(tabVolees){
         pctBleu = parseInt((tabFlechesTriees["bleu"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
         pctNoir = parseInt((tabFlechesTriees["noir"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
         pctBlanc = parseInt((tabFlechesTriees["blanc"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
+        pctManque = parseInt((tabFlechesTriees["manque"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
         
         initPctRouge = pctJaune;
         pctRouge += initPctRouge;
@@ -57,21 +59,25 @@ function getStatColors(tabVolees){
         initPctNoir = pctBleu;
         pctNoir += initPctNoir;
         initPctBlanc = pctNoir;
-        pctBlanc = 100;
+        pctBlanc += initPctBlanc;
+        initPctManque = pctBlanc;
+        pctManque = 100;
     
         strJaune = colorJaune + " 0%, " + colorJaune + " " + pctJaune + "%, ";
         strRouge = colorRouge + " " + initPctRouge + "%, " + colorRouge + " " + pctRouge + "%, ";
         strBleu = colorBleu + " " + initPctBleu + "%, " + colorBleu + " " + pctBleu + "%, ";
         strNoir = colorNoir + " " + initPctNoir + "%, " + colorNoir + " " + pctNoir + "%, ";
-        strBlanc = colorBlanc + " " + initPctBlanc + "%, " + colorBlanc + " " + pctBlanc + "% ";
+        strBlanc = colorBlanc + " " + initPctBlanc + "%, " + colorBlanc + " " + pctBlanc + "%, ";
+        strManque = colorManque + " " + initPctManque + "%, " + colorManque + " " + pctManque + "% ";
     
-        bgColor = strJaune + strRouge + strBleu + strNoir + strBlanc;
+        bgColor = strJaune + strRouge + strBleu + strNoir + strBlanc + strManque;
         bgColor = "linear-gradient(to right," + bgColor + ")";
+        console.log(bgColor);
     }
     return bgColor;
 }
 function getTabFlechesColors(tabVolees) {
-    var TabNbColor = {"jaune":0, "rouge":0, "bleu":0, "noir":0, "blanc":0, "nbFlechesTirees":0};
+    var TabNbColor = {"jaune":0, "rouge":0, "bleu":0, "noir":0, "blanc":0, "manque":0, "nbFlechesTirees":0};
     var valFleche;
     for (i = 0; i < tabVolees.length; i++) {
         for (j = 0; j < 3; j++) {
@@ -98,7 +104,7 @@ function getTabFlechesColors(tabVolees) {
                     break;
                 case 1:TabNbColor["blanc"] += 1;
                     break;
-                case 0:TabNbColor["blanc"] += 1;
+                case 0:TabNbColor["manque"] += 1;
                     break;
             }
         }
