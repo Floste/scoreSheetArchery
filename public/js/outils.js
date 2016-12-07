@@ -45,12 +45,12 @@ function getStatColors(tabVolees){
     tabFlechesTriees = getTabFlechesColors(tabVolees);
     if(tabFlechesTriees["nbFlechesTirees"]>0){
         
-        pctJaune = parseInt((tabFlechesTriees["jaune"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
-        pctRouge = parseInt((tabFlechesTriees["rouge"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
-        pctBleu = parseInt((tabFlechesTriees["bleu"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
-        pctNoir = parseInt((tabFlechesTriees["noir"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
-        pctBlanc = parseInt((tabFlechesTriees["blanc"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
-        pctManque = parseInt((tabFlechesTriees["manque"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
+        pctJaune = Math.round((tabFlechesTriees["jaune"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
+        pctRouge = Math.round((tabFlechesTriees["rouge"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
+        pctBleu = Math.round((tabFlechesTriees["bleu"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
+        pctNoir = Math.round((tabFlechesTriees["noir"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
+        pctBlanc = Math.round((tabFlechesTriees["blanc"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
+        pctManque = Math.round((tabFlechesTriees["manque"] * 100) / tabFlechesTriees["nbFlechesTirees"]);
         
         initPctRouge = pctJaune;
         pctRouge += initPctRouge;
