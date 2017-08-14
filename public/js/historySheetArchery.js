@@ -123,6 +123,7 @@ function displaySeries(){
     var data = JSON.parse(localStorage.getItem("series"));
     var i;
     var listeConfigurations = {};
+    data.series = data.series.reverse();
     for(i=0; i<data.series.length; i++){
         curSerie = data.series[i];
         
