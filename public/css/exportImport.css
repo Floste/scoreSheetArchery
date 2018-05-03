@@ -1,0 +1,11 @@
+textarea#dataLocal{
+	width: 0;
+	height: 0;
+	position: relative;
+	top: -10000px;
+}
+
+textarea#dataToImport{
+	width: 80%;
+	min-height: 150px;
+}

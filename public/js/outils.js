@@ -72,7 +72,6 @@ function getStatColors(tabVolees){
     
         bgColor = strJaune + strRouge + strBleu + strNoir + strBlanc + strManque;
         bgColor = "linear-gradient(to right," + bgColor + ")";
-        console.log(bgColor);
     }
     return bgColor;
 }

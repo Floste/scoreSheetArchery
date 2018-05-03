@@ -7,6 +7,9 @@ $(window).on( "hashchange", function(event){
         case '#historique':
             initHistorique();
             break;
+        case '#exportImport':
+            initExportImport();
+            break;
         default:
             initFormSaisie();
             break;
