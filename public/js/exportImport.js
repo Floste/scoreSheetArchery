@@ -27,6 +27,7 @@ function initExportImport(){
          var copyText = document.getElementById("dataLocal");
          copyText.select();
          document.execCommand("Copy");
+         iosCopyToClipboard(copyText);
     })
 
     $("#importAction").click(function(){
@@ -36,4 +37,25 @@ function initExportImport(){
         });
         $("#dataToImport").val("");
     })
+
+    function iosCopyToClipboard(el) {
+        var oldContentEditable = el.contentEditable,
+            oldReadOnly = el.readOnly,
+            range = document.createRange();
+
+        el.contenteditable = true;
+        el.readonly = false;
+        range.selectNodeContents(el);
+
+        var s = window.getSelection();
+        s.removeAllRanges();
+        s.addRange(range);
+
+        el.setSelectionRange(0, 999999); // A big number, to cover anything that could be inside the element.
+
+        el.contentEditable = oldContentEditable;
+        el.readOnly = oldReadOnly;
+
+        document.execCommand('copy');
+    }
 }
