@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <meta name="author" content="Stéphane Florentin" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
 
         <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 
@@ -28,7 +29,7 @@
     	<script type="text/javascript" src="js/loaderTemplate.js"></script>
 
 	</head>
-    <body>
+    <body id="bodyMain">
         <div class="container">
             <div id="containerNav"></div>
             <div id="containerMain"></div>
@@ -40,6 +41,10 @@
         <script type="text/javascript">
             loadTemplates(function(){
                 $(window).trigger("hashchange");
+            });
+            $().ready(function(){
+                document.body.requestFullscreen();
+                alert("request full screen");
             });
         </script>
     </body>
